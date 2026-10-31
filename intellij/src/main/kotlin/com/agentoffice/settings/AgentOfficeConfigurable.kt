@@ -9,7 +9,7 @@ import com.intellij.ui.dsl.builder.bindItem
 import com.intellij.ui.dsl.builder.bindText
 import com.intellij.ui.dsl.builder.columns
 import com.intellij.ui.dsl.builder.panel
-import com.intellij.ui.dsl.builder.toNullableProperty
+import com.intellij.ui.dsl.builder.rows
 
 /** Settings | Tools | Agent Office. */
 class AgentOfficeConfigurable : BoundConfigurable("Agent Office") {

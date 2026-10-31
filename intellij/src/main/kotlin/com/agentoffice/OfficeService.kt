@@ -15,7 +15,6 @@ import com.agentoffice.core.Summary
 import com.agentoffice.settings.AgentOfficeSettings
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
-import com.intellij.openapi.application.ReadAction
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.project.Project
@@ -109,7 +108,7 @@ class OfficeService(private val project: Project) : Disposable {
         val dirs = LinkedHashSet<String>()
         project.basePath?.let { dirs += it }
         try {
-            ReadAction.compute<Unit, RuntimeException> {
+            ApplicationManager.getApplication().runReadAction {
                 if (!project.isDisposed) {
                     ProjectRootManager.getInstance(project).contentRoots
                         .filter { it.isInLocalFileSystem }

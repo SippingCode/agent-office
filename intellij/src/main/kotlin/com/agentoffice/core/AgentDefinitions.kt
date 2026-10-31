@@ -96,9 +96,9 @@ object AgentDefinitions {
             for (entry in stream) {
                 val fileName = entry.fileName.toString()
                 if (Files.isRegularFile(entry) && fileName.lowercase().endsWith(".md")) {
-                    files += entry
+                    files.add(entry)
                 } else if (Files.isDirectory(entry) && depth < 2 && !fileName.startsWith(".")) {
-                    files += listMarkdown(entry, depth + 1)
+                    files.addAll(listMarkdown(entry, depth + 1))
                 }
             }
         }

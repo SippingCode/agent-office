@@ -95,7 +95,7 @@ class OfficePanel(private val project: Project, parent: Disposable) : JPanel(Bor
 
     private fun execute(js: String) {
         val b = browser ?: return
-        if (Disposer.isDisposed(b)) return
+        if (b.isDisposed) return
         b.cefBrowser.executeJavaScript(js, b.cefBrowser.url, 0)
     }
 

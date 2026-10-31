@@ -333,10 +333,10 @@ class ClaudeCodeAdapter(private val options: Options) {
         private fun findSessionDir(projectsDir: Path, session: SessionRecord): Path? {
             val candidates = mutableListOf<Path>()
             if (session.cwd != null) {
-                candidates += projectsDir.resolve(projectDirName(session.cwd))
+                candidates.add(projectsDir.resolve(projectDirName(session.cwd)))
             }
             try {
-                Files.newDirectoryStream(projectsDir).use { stream -> stream.forEach { candidates += it } }
+                Files.newDirectoryStream(projectsDir).use { stream -> stream.forEach { candidates.add(it) } }
             } catch (err: IOException) {
                 return null
             }
