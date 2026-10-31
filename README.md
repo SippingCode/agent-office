@@ -26,6 +26,10 @@ A tiny pixel-art office inside VS Code. When one of your Claude Code agents star
 - **Zero setup**: agents, desks and colors are detected automatically.
 - **Private by design**: 100% local and read-only. No code, prompt or conversation is ever displayed.
 
+> [!NOTE]
+> **Using a JetBrains IDE?** The same office exists as an IntelliJ Platform plugin (IntelliJ IDEA, PyCharm, WebStorm, GoLand…):
+> see [`intellij/`](intellij/README.md). It shares the scene with this extension and reads the same local signals.
+
 ## Getting started
 
 ### 1. Make sure you have custom agents

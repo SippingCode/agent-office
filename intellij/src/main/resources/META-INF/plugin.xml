@@ -1,0 +1,53 @@
+<idea-plugin>
+    <id>com.agentoffice.intellij</id>
+    <name>Agent Office — Who's working?</name>
+    <vendor url="https://github.com/SippingCode/agent-office">Agent Office</vendor>
+
+    <description><![CDATA[
+    <p>A tiny pixel-art office inside your JetBrains IDE that shows which of your <b>Claude Code custom agents</b> is working right now.</p>
+    <p>When an agent starts working, its character walks to its desk. When an agent delegates, the others gather in a meeting room.
+    When a job is done, the result is brought back to whoever asked for it. And when there is nothing to do, everyone heads to the pond or the hammock.</p>
+    <ul>
+      <li><b>Live status</b>: working, idle or unknown, refreshed every 2 seconds, with a status bar summary.</li>
+      <li><b>Real delegations</b>: visits, meetings and hand-ins follow what your agents actually do.</li>
+      <li><b>Zero setup</b>: agents, desks and colors are detected from <code>~/.claude/agents</code> and <code>.claude/agents</code>.</li>
+      <li><b>Private by design</b>: 100% local and read-only. No code, prompt or conversation is ever displayed.</li>
+    </ul>
+    <p>Open it from <i>View | Tool Windows | Agent Office</i>, or click the status bar item. Settings live under <i>Tools | Agent Office</i>.</p>
+    ]]></description>
+
+    <change-notes><![CDATA[
+    <ul><li>1.0.0 — first IntelliJ Platform release, ported from the VS Code extension.</li></ul>
+    ]]></change-notes>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Agent Office"
+                    anchor="bottom"
+                    icon="/icons/toolWindowOffice.svg"
+                    factoryClass="com.agentoffice.ui.OfficeToolWindowFactory"/>
+        <statusBarWidgetFactory id="AgentOffice.Status"
+                                implementation="com.agentoffice.ui.OfficeStatusBarWidgetFactory"
+                                order="after positionWidget"/>
+        <applicationConfigurable parentId="tools"
+                                 id="com.agentoffice.settings"
+                                 displayName="Agent Office"
+                                 instance="com.agentoffice.settings.AgentOfficeConfigurable"/>
+        <postStartupActivity implementation="com.agentoffice.OfficeStartup"/>
+    </extensions>
+
+    <actions>
+        <action id="AgentOffice.Show"
+                class="com.agentoffice.actions.ShowOfficeAction"
+                text="Agent Office: Show the Agent Office"
+                description="Open the pixel-art office that shows which Claude Code agent is working">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="AgentOffice.Refresh"
+                class="com.agentoffice.actions.RefreshOfficeAction"
+                icon="AllIcons.Actions.Refresh"
+                text="Agent Office: Refresh Agent Status"
+                description="Read the Claude Code runtime signals now"/>
+    </actions>
+</idea-plugin>
